@@ -4,7 +4,7 @@ Création d'un portail sous forme de portofolio, permettant aux étudiants du Ce
 ## Politique d'utilisation du Git
 Pour les messages de commit : utiliser les conventions de commit voir https://www.conventionalcommits.org/en/v1.0.0/ 
 Les éléments qui seront généralement utilisés dans les messages de commit sont les suivants : 
--	`````` : pour fixer un bug,
+-	```fix```: pour fixer un bug,
 -	```test``` : pour les tests,
 -	```feat``` : lorsqu’on crée une nouvelle fonctionnalité,
 -	```chore``` : c’est pour la réalisation des tâches fastidieuses. Lorsque la tâche à effectuer ne nécessite pas de mettre à jour du code, etc. 
@@ -13,6 +13,7 @@ Les éléments qui seront généralement utilisés dans les messages de commit s
 
 Format: ```<type>(<scope>): <sujet>```
 ```<scope>``` est optionnel. Mais nécessaire dans certains cas. Exemple : lorsqu’on crée une nouvelle fonctionnalité, mise à jour.
+
 ***Usage*** :
 ```feat```: création de la vue étudiant (message spécifiant de manière brève l’objectif).
 
