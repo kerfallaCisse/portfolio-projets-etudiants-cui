@@ -2,7 +2,7 @@
 Création d'un portail sous forme de portofolio, permettant aux étudiants du Centre Universitaire d'Informatique (CUI) de présenter, préserver les projets qu'ils ont effectués durant leurs années d'études au CUI.
 
 ## Politique d'utilisation du Git
-Pour les messages de commit : utiliser les conventions de commit voir https://www.conventionalcommits.org/en/v1.0.0/ 
+Pour les messages de commit : utiliser les conventions de commit voir https://www.conventionalcommits.org/en/v1.0.0/. 
 Les éléments qui seront généralement utilisés dans les messages de commit sont les suivants : 
 -	```fix```: pour fixer un bug,
 -	```test``` : pour les tests,
