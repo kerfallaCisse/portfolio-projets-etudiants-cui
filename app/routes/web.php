@@ -21,6 +21,8 @@ Route::post("login_process",[\App\Http\Controllers\CustomAuthController::class, 
 Route::get("registration",[\App\Http\Controllers\CustomAuthController::class, "registration"])->name("registration");
 Route::post("registration_process", [\App\Http\Controllers\CustomAuthController::class, 'registration_process'])->name("registration.process");
 Route::get("logout", [\App\Http\Controllers\CustomAuthController::class, "logout"])->name("logout");
+Route::get("newproject", [\App\Http\Controllers\CreateProjectController::class, "create"])->name("newproject");
+Route::post("newproject_process", [\App\Http\Controllers\CreateProjectController::class, 'newproject_process'])->name("newproject.process");
 Route::get("projects", function () {
     return view("projects");
 }) ->name("projects");

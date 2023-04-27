@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Fichier extends Model
 {
     use HasFactory;
 
     protected $connection = "mysql";
-    protected $table = "Role";
+    protected $table = "Fichier";
 
-    public function utilisateur()
+    public function projet()
     {
-        return $this->hasMany('App\Models\Utilisateur');
+        return $this->belongsTo('App\Models\Projet');
     }
 }
