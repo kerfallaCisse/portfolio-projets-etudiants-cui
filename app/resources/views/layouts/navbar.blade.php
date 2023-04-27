@@ -56,7 +56,7 @@
 
 
 </body>
-<div class="container-fluid">
+<div class="container-fluid" style="padding-bottom: 100px">
     @yield('content')
 </div>
 <footer class="bg-secondary text-center fixed-bottom">
