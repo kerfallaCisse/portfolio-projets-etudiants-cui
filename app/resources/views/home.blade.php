@@ -11,6 +11,11 @@
             {{\Illuminate\Support\Facades\Session::get("ajout_prof")}}
         </div>
     @endif
+    @if(\Illuminate\Support\Facades\Session::has("ajout_admin"))
+        <div class="alert alert-success">
+            {{\Illuminate\Support\Facades\Session::get("ajout_admin")}}
+        </div>
+    @endif
     <h1 class="text-center">Bienvenu dans le portail de projets des étudiants au CUI</h1>
 
 @endsection

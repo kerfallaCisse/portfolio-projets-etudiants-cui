@@ -27,6 +27,8 @@ Route::group([], function () {
 Route::group([], function () {
     Route::get("professeur_cours", [\App\Http\Controllers\AdministrateurController::class, 'assigne_professor_cours'])->name("professor.cours");
     Route::post("professeur_cours_process", [\App\Http\Controllers\AdministrateurController::class, "process_prof_cours"])->name("professor.cours.process");
+    Route::get("add_admin", [\App\Http\Controllers\AdministrateurController::class, "add_admin"])->name("add.admin");
+    Route::post("add_admin_process", [\App\Http\Controllers\AdministrateurController::class, "process_add_admin"])->name("add.admin.process");
 });
 
 

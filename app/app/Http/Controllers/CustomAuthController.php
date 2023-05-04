@@ -33,6 +33,8 @@ class CustomAuthController extends Controller
         return redirect("/");
     }
 
+
+
     public function registration_process(Request $request)
     {
 
@@ -176,7 +178,7 @@ class CustomAuthController extends Controller
 
     }
     /***
-     * @param string $prenom le prénom de l'utilisateur
+     * @param string $prenom le prénom de l'utilisateurcd
      * @param string $nom le nom de l'utilisateur
      * @return bool true si le nom et le prénom ne contienne pas des caractères spéciaux et false dans le cas contraire
      *

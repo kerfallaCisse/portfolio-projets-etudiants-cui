@@ -1,6 +1,9 @@
 @extends("layouts.navbar")
 
 @section('content')
+    <script>
+
+    </script>
     <main>
         <div class="container">
             <div class="row justify-content-center">

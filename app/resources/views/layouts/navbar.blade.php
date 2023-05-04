@@ -74,7 +74,7 @@
                     <hr class="dropdown-divider">
                 </li>
                 @if(\Illuminate\Support\Facades\Session::get("est_administrateur") == 1)
-                    <li><a class="dropdown-item" href="#">Ajouter<br>un administrateur</a></li>
+                    <li><a class="dropdown-item" href="{{route('add.admin')}}">Ajouter<br>un administrateur</a></li>
                     <li><a class="dropdown-item" href="{{route('professor.cours')}}">Renseigner<br>un enseignant</a></li>
                 @endif
 
