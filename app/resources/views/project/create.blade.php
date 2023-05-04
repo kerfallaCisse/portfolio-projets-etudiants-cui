@@ -17,6 +17,26 @@
                                 <div class="form-group mb-3">
                                     <label for="cours">Nom du cours</label>
                                     <input type="text" id="cours" class="form-control autocomplete" name="cours" required autofocus>
+                                    <script>
+                                        $( function() {
+                                            var availableCourses = <?php echo $cours?>;
+                                            $( "#cours" ).autocomplete({
+                                                source: availableCourses
+                                            });
+                                        } );
+                                    </script>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="participants">Participants au projet</label>
+                                    <input type="text" id="participants" class="form-control autocomplete" name="participants" required autofocus>
+                                    <script>
+                                        $( function() {
+                                            var availableStudents = <?php echo $etudiants?>;
+                                            $( "#participants" ).autocomplete({
+                                                source: availableStudents
+                                            });
+                                        } );
+                                    </script>
                                 </div>
                                 <div class="d-grid mx-auto">
                                     <button type="submit" class="btn btn-dark btn-block">Soumettre</button>
