@@ -125,7 +125,7 @@ class CustomAuthController extends Controller
                 $user = DB::table("Utilisateur")
                     ->join("Role", "Role.id", "=", "Utilisateur.role_id")
                     ->where("Utilisateur.email_unige", "=", $email_unige)
-                    ->select("Utilisateur.nom", "Utilisateur.prenom", "Utilisateur.email_unige", "Role.est_etudiant",
+                    ->select("Utilisateur.nom", "Utilisateur.prenom", "Utilisateur.email_unige", "Utilisateur.no_imm","Role.est_etudiant",
                         "Role.est_enseignant", "Role.est_administrateur")
                     ->get();
                 # Normalement à ce stade l'utilisateur existe dans la base de données
@@ -137,12 +137,14 @@ class CustomAuthController extends Controller
                 $corresponding_user = $user[0];
                 $nom = $corresponding_user->nom;
                 $prenom = $corresponding_user->prenom;
+                $no_imm = $corresponding_user->no_imm;
                 $est_etudiant = $corresponding_user->est_etudiant;
                 $est_enseignant = $corresponding_user->est_enseignant;
                 $est_administrateur = $corresponding_user->est_administrateur;
                 $session_info = array(
                     "nom" => $nom,
                     "prenom" => $prenom,
+                    "no_imm" => $no_imm,
                     "email_unige" => $email_unige,
                     "est_etudiant" => $est_etudiant,
                     "est_enseignant" => $est_enseignant,
