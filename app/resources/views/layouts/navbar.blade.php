@@ -51,10 +51,10 @@
                 </li>
             @endif
         </ul>
-        <form class="input-group" style="padding-left: 20px">
+        <form class="input-group" style="padding-left: 20px; padding-right: 20px">
             @csrf
             <input class="form-control mr-sm-2" type="search" placeholder="Rechercher par cours" aria-label="Search"
-                   id="search_cours" name="search_cours">
+                   id="search_cours" name="search_cours"">
             <button class="btn btn-secondary my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
         </form>
         <?php if (\Illuminate\Support\Facades\Session::get("connected")): ?>

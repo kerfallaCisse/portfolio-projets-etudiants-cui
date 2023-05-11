@@ -22,6 +22,11 @@ Route::group([], function () {
     Route::get("registration",[\App\Http\Controllers\CustomAuthController::class, "registration"])->name("registration");
     Route::post("registration_process", [\App\Http\Controllers\CustomAuthController::class, 'registration_process'])->name("registration.process");
     Route::get("logout", [\App\Http\Controllers\CustomAuthController::class, "logout"])->name("logout");
+    Route::get("email_verif", [\App\Http\Controllers\CustomAuthController::class,"email_verif"])->name("email_verif");
+    Route::post("email_verif_process",[\App\Http\Controllers\CustomAuthController::class,'email_verif_process'])->name("email_verif_process");
+    Route::get("change_password",[\App\Http\Controllers\CustomAuthController::class,"change_password"])->name("change_password");
+    Route::post("change_password_process",[\App\Http\Controllers\CustomAuthController::class,"change_password_process"])->name("change_password_process");
+
 });
 
 Route::group([], function () {

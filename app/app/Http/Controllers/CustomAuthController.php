@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\Utilisateur;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 
@@ -32,7 +31,6 @@ class CustomAuthController extends Controller
         Session::flush();
         return redirect("/");
     }
-
 
 
     public function registration_process(Request $request)
@@ -125,7 +123,7 @@ class CustomAuthController extends Controller
                 $user = DB::table("Utilisateur")
                     ->join("Role", "Role.id", "=", "Utilisateur.role_id")
                     ->where("Utilisateur.email_unige", "=", $email_unige)
-                    ->select("Utilisateur.nom", "Utilisateur.prenom", "Utilisateur.email_unige", "Utilisateur.no_imm","Role.est_etudiant",
+                    ->select("Utilisateur.nom", "Utilisateur.prenom", "Utilisateur.email_unige", "Utilisateur.no_imm", "Role.est_etudiant",
                         "Role.est_enseignant", "Role.est_administrateur")
                     ->get();
                 # Normalement à ce stade l'utilisateur existe dans la base de données
@@ -161,6 +159,55 @@ class CustomAuthController extends Controller
 
     }
 
+    public function email_verif()
+    {
+        return view("auth.email_verif");
+    }
+
+    # Il faut le mot de passe du serveur SMP de outlook.unige.ch
+    public function email_verif_process(Request $request)
+    {
+        $data = $request->all();
+        $email_unige = strtolower($data["email_unige"]);
+
+        $user = Utilisateur::query()->where("email_unige", "=", $email_unige)->select("id")->get();
+        if (count($user) == 0) {
+            Session::flash("email_verif_failed", "Oups cet email n'existe pas");
+            return to_route("home");
+        }
+
+        $user_id = $user[0]->id;
+        Session::put(["passord_change" => true, "user_id" => $user_id]);
+        return to_route("change_password");
+
+
+    }
+
+    public function change_password()
+    {
+        return view("auth.change_password");
+    }
+
+    public function change_password_process(Request $request)
+    {
+        $data = $request->all();
+        $mdp_unige = $data["email_unige_password"];
+        if ($this->verifyPasswordStrength($mdp_unige) && Session::get("passord_change")) {
+            # On hash le mot de passe
+            $mdp_hashed = password_hash($mdp_unige, PASSWORD_BCRYPT);
+            # On met à jour le mot de passe de l'utilisateur
+            $user_id = Session::get("user_id");
+            Utilisateur::query()->where("id", "=", $user_id)->update(array("mdp_unige" => $mdp_hashed));
+            Session::flash("mdp_changed", "Votre mot de passe a été changé avec succès");
+        } else {
+            $message = "Le mot de passe doit comporter au moins 8 caractères et au moins un chiffre, une
+        lettre majuscule, une lettre minuscule et un caractère spécial";
+            Session::flash("mdp_validation", $message);
+        }
+        return to_route("home");
+
+    }
+
 
     /***
      * @param string $password le mot de passe
@@ -179,6 +226,7 @@ class CustomAuthController extends Controller
         return true;
 
     }
+
     /***
      * @param string $prenom le prénom de l'utilisateurcd
      * @param string $nom le nom de l'utilisateur
