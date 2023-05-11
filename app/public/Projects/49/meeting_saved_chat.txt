@@ -1,0 +1,26 @@
+16:30:41 De  Nikita Missiri  à  Tout le monde:
+	#CF0063
+16:36:39 De  Nikita Missiri  à  Tout le monde:
+	#D80669
+20:36:27 De  Kerfalla Cisse  à  Tout le monde:
+	Tu es là ?
+20:36:42 De  Kerfalla Cisse  à  Tout le monde:
+	Je t'appel sa fait un moment ahahah
+20:49:04 De  Nikita Missiri  à  Tout le monde:
+	Moi chui là
+21:11:26 De  Kerfalla Cisse  à  Tout le monde:
+	parle pour voir
+21:11:47 De  Kerfalla Cisse  à  Tout le monde:
+	Dit quelque chose
+21:13:44 De  Kerfalla Cisse  à  Tout le monde:
+	Je t'entends bien
+21:15:15 De  Kerfalla Cisse  à  Tout le monde:
+	Parle
+22:47:33 De  Kerfalla Cisse  à  Tout le monde:
+	Vue:		@extends('layouts.navbar')		@section('content')		    <div class="columns is-centered">	        @foreach($files as $file)	            <div class="column is-3">	                <div class="box">	                    <a href="/{{$file}}" class="button is-primary">{{$file}}</a>	                </div>	            </div>	        @endforeach		    </div>			@endsection
+22:48:16 De  Kerfalla Cisse  à  Tout le monde:
+	SearchController:		public function getAllFilesProject($project_id) {	        $disk = Storage::disk("public");	        $directory = "Projects/".$project_id;	        $files = $disk->allFiles($directory);		        $datas = array(	            "files" => $files	        );	        return view("files")->with($datas);	    }
+22:49:22 De  Kerfalla Cisse  à  Tout le monde:
+	Route pour le SearchController:		Route::get("files_project/{project_id}",[\App\Http\Controllers\SearchController::class,"getAllFilesProject"])->name("files");
+22:50:58 De  Kerfalla Cisse  à  Tout le monde:
+	modifier le fichier: config/filesystems.php:		'public' => [	            'driver' => 'local',	            'root' => public_path(),	            'url' => env('APP_URL').'/storage',	            'visibility' => 'public',	            'throw' => false,	        ],

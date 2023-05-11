@@ -36,6 +36,12 @@ Route::group([], function () {
     Route::post("add_admin_process", [\App\Http\Controllers\AdministrateurController::class, "process_add_admin"])->name("add.admin.process");
 });
 
+Route::group([], function () {
+    Route::get("search_project_cours", [\App\Http\Controllers\SearchController::class, "getAvailableCours"])->name("search.projects.cours");
+    Route::post("search_project_cours_process", [\App\Http\Controllers\SearchController::class, "searchProjectsCoursProcess"])->name("search.projects.process");
+    Route::get("files",[\App\Http\Controllers\SearchController::class,"getAllFilesProject"])->name("files");
+});
+
 
 Route::get("projects", function () {
     return view("projects");

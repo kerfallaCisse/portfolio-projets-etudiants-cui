@@ -7,6 +7,7 @@ use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 
 
 /****
@@ -150,7 +151,7 @@ class CustomAuthController extends Controller
                     "connected" => true
                 );
                 Session::put($session_info);
-                return redirect()->route("projects");
+                return to_route("projects");
             } else {
                 Session::put(["fail" => "Les identifiants ne sont pas correctes"]);
                 return \redirect()->route("home");
@@ -191,13 +192,14 @@ class CustomAuthController extends Controller
     public function change_password_process(Request $request)
     {
         $data = $request->all();
+        $currentDate = date('Y-m-d');
         $mdp_unige = $data["email_unige_password"];
         if ($this->verifyPasswordStrength($mdp_unige) && Session::get("passord_change")) {
             # On hash le mot de passe
             $mdp_hashed = password_hash($mdp_unige, PASSWORD_BCRYPT);
             # On met à jour le mot de passe de l'utilisateur
             $user_id = Session::get("user_id");
-            Utilisateur::query()->where("id", "=", $user_id)->update(array("mdp_unige" => $mdp_hashed));
+            Utilisateur::query()->where("id", "=", $user_id)->update(array("mdp_unige" => $mdp_hashed, "updated_at" => $currentDate));
             Session::flash("mdp_changed", "Votre mot de passe a été changé avec succès");
         } else {
             $message = "Le mot de passe doit comporter au moins 8 caractères et au moins un chiffre, une

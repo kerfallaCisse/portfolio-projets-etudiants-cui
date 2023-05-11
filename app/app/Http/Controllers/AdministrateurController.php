@@ -63,13 +63,13 @@ class AdministrateurController extends Controller
     }
 
 
-    private function get_code_cours(): array
+    public static function get_code_cours(): array
     {
         $code_cours = Cours::all()->pluck("cours_code");
         return $code_cours->toArray();
     }
 
-    private function get_nom_cours(): array
+    public static function get_nom_cours(): array
     {
         $nom_cours = Cours::all()->pluck("cours_nom");
         return $nom_cours->toArray();
