@@ -9,6 +9,13 @@
             });
         });
     </script>
+    @if(\Illuminate\Support\Facades\Session::has("cours_not_exist"))
+        <div class="alert alert-danger">
+            {{\Illuminate\Support\Facades\Session::get("cours_not_exist")}}
+        </div>
+
+
+    @endif
 
     <form class="input-group" style="padding-left: 20px; padding-right: 20px"
           action="{{route('search.projects.process')}}" method="post">

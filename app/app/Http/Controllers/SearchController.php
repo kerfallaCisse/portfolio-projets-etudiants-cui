@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cours;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class SearchController extends Controller
@@ -30,7 +31,17 @@ class SearchController extends Controller
         $cours_id_raw = DB::table('Cours')
             ->select('id')
             ->where('code', '=', $code_cours);
-        $cours_id = $cours_id_raw->pluck('id')->toArray()[0];
+        $cours_id = $cours_id_raw->pluck('id')->toArray();
+        if (count($cours_id) == 0) {
+            $code_cours = AdministrateurController::get_code_cours();
+            $nom_cours = AdministrateurController::get_nom_cours();
+
+            $cours = array_map(function ($code_cours, $nom_cours) {
+                return $code_cours ." ".$nom_cours;
+            }, $code_cours, $nom_cours);
+            Session::flash("cours_not_exist", "Désolé le cours mentionné n'existe pas");
+            return view("search.search", ["cours" => collect($cours)]);
+        }
         return to_route('cours', $cours_id);
     }
 
