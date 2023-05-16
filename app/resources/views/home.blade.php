@@ -51,6 +51,11 @@
             {{\Illuminate\Support\Facades\Session::get("image_overload")}}
         </div>
     @endif
+    @if(\Illuminate\Support\Facades\Session::has("user_exists"))
+        <div class="alert alert-danger">
+            {{\Illuminate\Support\Facades\Session::get("user_exists")}}
+        </div>
+    @endif
     <h1 class="text-center">Bienvenue dans le portail de projets des étudiants au CUI</h1>
 
 @endsection

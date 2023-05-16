@@ -2,6 +2,11 @@
 
 @section('content')
     <main>
+        @if(\Illuminate\Support\Facades\Session::has("missing_data"))
+            <div class="alert alert-danger">
+                {{\Illuminate\Support\Facades\Session::get("missing_data")}}
+            </div>
+        @endif
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-4">

@@ -77,8 +77,12 @@ class CustomAuthController extends Controller
                     return view("auth.mdp_validation");
                 }
             }
-            # On procède à l'enregistrement des tuples
+            # On procède à l'enregistrement des tuples et à la vérification des champs pour l'étudiant
             if (array_key_exists("etudiant", $data)) {
+                if ($data['no_immatriculation'] == "" or $data['email_perso'] == "" or $data['email_perso_password']) {
+                    Session::flash("missing_data", "Veuillez remplir tous les champs obligatoires, s'il vous plaît.");
+                    return view("auth.registration");
+                }
                 $role->est_etudiant = 1;
             }
             if (array_key_exists("enseignant", $data)) {
