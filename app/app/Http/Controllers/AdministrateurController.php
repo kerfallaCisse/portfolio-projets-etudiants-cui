@@ -38,28 +38,37 @@ class AdministrateurController extends Controller
         $code_cours = $cours[0];
         # On récupère l'id du cours en question
         $corresponding_cours = Cours::query()->where("code", "=", $code_cours)->select("id")->get();
-        $cours_id = $corresponding_cours[0]->id;
-        $currentDate = date('Y-m-d');
-        # Process enseignants
-        foreach ($enseignants as $enseignant) {
-
-            $enseig = explode(" ", $enseignant);
-            $enseig_clean = array_map(function ($element) {
-                return trim($element, " ");
-            }, $enseig);
-            $last_index = count($enseig_clean);
-            if ($last_index != 1) {
-                $corresponding_teacher_email = $enseig_clean[$last_index - 1];
-                # On récupère l'id de l'utilisateur
-                $corresponding_teacher = Utilisateur::query()->where("email_unige", "=", $corresponding_teacher_email)->select("id")->get();
-                if (count($corresponding_teacher) != 0) {
-                    $teacher_id = $corresponding_teacher[0]->id;
-                    UtilisateurCours::query()->insert(array("cours_id" => $cours_id, "user_id" => $teacher_id, "created_at" => $currentDate, "updated_at" => $currentDate));
+        if (count($corresponding_cours) == 0) {
+            Session::flash("ajout_prof_fail", "Désolé, le cours renseigné n'existe pas. Veuillez réessayer.");
+            return view("home");
+        } else {
+            $fail = false;
+            $cours_id = $corresponding_cours[0]->id;
+            $currentDate = date('Y-m-d');
+            # Process enseignants
+            foreach ($enseignants as $enseignant) {
+                $enseig = explode(" ", $enseignant);
+                $enseig_clean = array_map(function ($element) {
+                    return trim($element, " ");
+                }, $enseig);
+                $last_index = count($enseig_clean);
+                if ($last_index == 1) {
+                    $fail = true;
+                    break;
                 }
+                    $corresponding_teacher_email = $enseig_clean[$last_index - 1];
+                    # On récupère l'id de l'utilisateur
+                    $corresponding_teacher = Utilisateur::query()->where("email_unige", "=", $corresponding_teacher_email)->select("id")->get();
+                    if (count($corresponding_teacher) != 0) {
+                        $teacher_id = $corresponding_teacher[0]->id;
+                        UtilisateurCours::query()->insert(array("cours_id" => $cours_id, "user_id" => $teacher_id, "created_at" => $currentDate, "updated_at" => $currentDate));
+                    }
             }
+            if ($fail) Session::flash("ajout_prof_fail", "Désolé, un utilisateur que vous avez renseigné n'existe pas. Veuillez réessayer.");
+            else Session::flash("ajout_prof", "L'assignement a été fait correctement.");
+            return view("home");
         }
-        Session::flash("ajout_prof", "L'assignement a été fait correctement.");
-        return view("home");
+
     }
 
 
@@ -107,13 +116,17 @@ class AdministrateurController extends Controller
         $data = $request->all();
         $admins = $data["admins"];
         $currentDate = date('Y-m-d');
+        $fail = false;
         foreach ($admins as $admin) {
             $adm = explode(" ", $admin);
             $adm_clean = array_map(function ($element) {
                 return trim($element, " ");
             }, $adm);
             $last_index = count($adm_clean);
-            if ($last_index != 1) {
+            if ($last_index == 1) {
+                $fail = true;
+                break;
+            }
                 $corresponding_user_email = $adm_clean[$last_index - 1];
                 # On récupère l'id de l'utilisateur
                 $corresponding_user = Utilisateur::query()->where("email_unige", "=", $corresponding_user_email)->select("id")->get();
@@ -123,9 +136,9 @@ class AdministrateurController extends Controller
                     $role_id = Utilisateur::query()->where("id", "=", $user_id)->select("role_id")->get()[0]->role_id;
                     Role::query()->where("id", "=", $role_id)->update(array("est_administrateur" => 1, "updated_at" => $currentDate));
                 }
-            }
         }
-        Session::flash("ajout_admin", "L'ajout des administrateurs a été fait avec succès.");
+        if ($fail) Session::flash("ajout_admin_fail", "Désolé, un utilisateur que vous avez renseigné n'existe pas.");
+        else Session::flash("ajout_admin", "L'ajout des administrateurs a été fait avec succès.");
         return view("home");
     }
 

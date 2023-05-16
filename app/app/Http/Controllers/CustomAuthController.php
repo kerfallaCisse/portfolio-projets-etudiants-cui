@@ -158,7 +158,7 @@ class CustomAuthController extends Controller
                 Session::put($session_info);
                 return to_route("portail", $id);
             } else {
-                Session::put(["fail" => "Les identifiants ne sont pas correctes"]);
+                Session::put(["fail" => "Les identifiants ne sont pas correctes. Veuillez réessayer."]);
                 return \redirect()->route("home");
             }
         }
@@ -178,7 +178,7 @@ class CustomAuthController extends Controller
 
         $user = Utilisateur::query()->where("email_unige", "=", $email_unige)->select("id")->get();
         if (count($user) == 0) {
-            Session::flash("email_verif_failed", "Oups cet email n'existe pas");
+            Session::flash("email_verif_failed", "Cet email n'existe pas. Veuillez réessayer.");
             return to_route("home");
         }
 
@@ -208,7 +208,7 @@ class CustomAuthController extends Controller
             Session::flash("mdp_changed", "Votre mot de passe a été changé avec succès");
         } else {
             $message = "Le mot de passe doit comporter au moins 8 caractères et au moins un chiffre, une
-        lettre majuscule, une lettre minuscule et un caractère spécial";
+        lettre majuscule, une lettre minuscule et un caractère spécial. Veuillez réessayer.";
             Session::flash("mdp_validation", $message);
         }
         return to_route("home");

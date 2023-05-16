@@ -23,8 +23,8 @@
                                     <textarea name="resume" id="resume" class="form-control autocomplete" rows="5" cols="10" placeholder="Dans ce projet, nous avons créé une application web, qui ..." required></textarea>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label class="form-label" for="vignette">Importer des fichiers pour la vignette</label>
-                                    <input type="file" name="vignette[]" id="vignette" class="form-control" multiple>
+                                    <label class="form-label" for="vignette">Importer des fichiers pour la vignette <span class="required">*</span></label>
+                                    <input type="file" name="vignette[]" id="vignette" class="form-control" multiple required>
                                 </div>
                                 <div class="form-group mb-3">
                                     <table class="table table-borderless" id="participantsTable">
@@ -50,7 +50,7 @@
                                             <td><label for="taches">Tâches effectués <span class="required">*</span></label></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="text" id="taches" class="form-control" placeholder="Créer des interfaces responsives" name="taches[]"></td>
+                                            <td><input type="text" id="taches" class="form-control" placeholder="Créer des interfaces responsives" name="taches[]" required></td>
                                             <td><span class="tache_btn"><input type="button" name="nouvelleTache" class="btn btn-outline-success" id="nouvelleTache" value ="+"></span></td>
                                         </tr>
                                     </table>
@@ -67,8 +67,8 @@
                                     </table>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label class="form-label" for="fichier">Importer des fichiers et documents du projet</label>
-                                    <input type="file" name="fichier[]" id="fichier" class="form-control" multiple>
+                                    <label class="form-label" for="fichier">Importer des fichiers et documents du projet <span class="required">*</span></label>
+                                    <input type="file" name="fichier[]" id="fichier" class="form-control" multiple required>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="acces">Définir l'accès au projet <span class="required">*</span></label>
@@ -128,7 +128,7 @@
 
                                         // pour les tâches
                                         let nouvelleTache = '<tr>' +
-                                            '<td><input type="text" id="taches" class="form-control" placeholder="Créer des interfaces responsives" name="taches[]"></td>' +
+                                            '<td><input type="text" id="taches" class="form-control" placeholder="Créer des interfaces responsives" name="taches[]" required></td>' +
                                             '<td><span class="tache_btn"><input type="button" name="nouvelleTache" class="btn btn-outline-success nouvelleTache" value ="+"></span></td></tr>';
                                         $("#nouvelleTache").click(function () {
                                             $(".tache_btn").html('<input type="button" name="enleverTache" class="btn btn-outline-danger" id="enleverTache" value ="×">');

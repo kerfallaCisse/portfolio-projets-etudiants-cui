@@ -5,7 +5,7 @@
         var availableAdmins = <?php echo $admins?>;
         $(document).ready(function(){ // ajout dynamiques de champs pour nouveaux admins
             let nouvelUtilisateur = '<tr>' +
-                '<td><input type="text" id="admins" class="form-control admins autocomplete" placeholder="Dupont Jean jean.dupont@unige.ch" name="admins[]"></td>' +
+                '<td><input type="text" id="admins" class="form-control admins autocomplete" placeholder="Dupont Jean jean.dupont@unige.ch" name="admins[]" required></td>' +
                 '<td><span class="admin_btn"><input type="button" name="nouvelUtilisateur" class="btn btn-outline-success nouvelUtilisateur" id="nouvelUtilisateur" value ="+"></span></td></tr>';
             $("#nouvelUtilisateur").click(function () {
                 $(".admin_btn").html('<input type="button" name="enleverUtilisateur" class="btn btn-outline-danger" id="enleverUtilisateur" value ="×">');
@@ -37,10 +37,10 @@
                                 <div class="form-group mb-3">
                                     <table class="table table-borderless" id="adminTable">
                                         <tr>
-                                            <td><label for="admin">Insérez le nom et/ou le prénom de l'utilisateur</label></td>
+                                            <td><label for="admins">Insérez le nom et/ou le prénom de l'utilisateur</label></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="text" id="admins" class="form-control admins autocomplete" placeholder="Dupont Jean jean.dupont@unige.ch" name="admins[]"></td>
+                                            <td><input type="text" id="admins" class="form-control admins autocomplete" placeholder="Dupont Jean jean.dupont@unige.ch" name="admins[]" required></td>
                                             <td><span class="admin_btn"><input type="button" name="nouvelUtilisateur" class="btn btn-outline-success" id="nouvelUtilisateur" value ="+"></span></td>
                                         </tr>
                                     </table>

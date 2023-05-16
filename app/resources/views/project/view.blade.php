@@ -79,13 +79,22 @@
                                     <li>{{ $taches[$i][$j] }}</li>
                                 @endfor
                             </ul>
-                        @if(count($outils_nom) > 0)
+                        @if(count($outils_nom[$i]) > 0)
                         <h5 class="unige">Outils utilisés</h5>
                         <div class="row row-cols-3 g-3">
                             @for ($j = 0; $j < count($outils_img[$i]); $j++)
-                                <img src="{{ asset($outils_img[$i][$j]) }}" title="{{ $outils_nom[$i][$j] }}" style="width:30%">
+                                @if($outils_img[$i][$j] != null)
+                                    <img src="{{ asset($outils_img[$i][$j]) }}" title="{{ $outils_nom[$i][$j] }}" style="width:30%">
+                                @endif
                             @endfor
                         </div>
+                            <div style="margin-top: 10px">
+                                <ul>
+                                    @for($j = count($outils_img[$i]); $j < count($outils_nom[$i]); $j++)
+                                        <li>{{ $outils_nom[$i][$j] }}</li>
+                                    @endfor
+                                </ul>
+                            </div>
                         @endif
                         <div style="margin: 15px"></div>
                         <h5 class="unige"><a href="{{ route('files', $project_id[$i]) }}">Accéder aux fichiers du projet</a></h5>

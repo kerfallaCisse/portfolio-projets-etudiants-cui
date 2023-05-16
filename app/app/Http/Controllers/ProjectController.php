@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Recommandation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -194,6 +192,7 @@ class ProjectController extends Controller
             ->select('titre')
             ->where('id', '=', $id)->pluck('titre')->toArray()[0];
         $datas = array(
+            "id" => $id,
             "titre" => $titre,
             "files" => $files
         );

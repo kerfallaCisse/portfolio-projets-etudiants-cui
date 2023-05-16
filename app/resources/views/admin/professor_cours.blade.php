@@ -6,7 +6,7 @@
         var availableProfs = <?php echo $enseignants ?>;
         $(document).ready(function() { // ajout dynamiques de champs pour les nouveaux profs
             let nouveauProf = '<tr>' +
-                '<td><input type="text" id="enseignants" class="form-control enseignants autocomplete" placeholder="Dupont Jean jean.dupont@unige.ch" name="enseignants[]"></td>' +
+                '<td><input type="text" id="enseignants" class="form-control enseignants autocomplete" placeholder="Dupont Jean jean.dupont@unige.ch" name="enseignants[]" required></td>' +
                 '<td><span class="prof_btn"><input type="button" name="nouveauProf" class="btn btn-outline-success nouveauProf" value ="+"></span></td></tr>';
             $("#nouveauProf").click(function () {
                 $(".prof_btn").html('<input type="button" name="enleverProf" class="btn btn-outline-danger" id="enleverProf" value ="×">');
@@ -51,7 +51,7 @@
                                             <td><label for="enseignants">Insérez le nom et/ou le prénom de l'enseignant</label></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="text" id="enseignants" class="form-control enseignants autocomplete" placeholder="Dupont Jean jean.dupont@unige.ch" name="enseignants[]"></td>
+                                            <td><input type="text" id="enseignants" class="form-control enseignants autocomplete" placeholder="Dupont Jean jean.dupont@unige.ch" name="enseignants[]" required></td>
                                             <td><span class="prof_btn"><input type="button" name="nouveauProf" class="btn btn-outline-success" id="nouveauProf" value ="+"></span></td>
                                         </tr>
                                     </table>

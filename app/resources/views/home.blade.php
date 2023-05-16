@@ -31,6 +31,26 @@
             {{\Illuminate\Support\Facades\Session::get("mdp_validation")}}
         </div>
     @endif
+    @if(\Illuminate\Support\Facades\Session::has("depot_fail"))
+        <div class="alert alert-danger">
+            {{\Illuminate\Support\Facades\Session::get("depot_fail")}}
+        </div>
+    @endif
+    @if(\Illuminate\Support\Facades\Session::has("ajout_admin_fail"))
+        <div class="alert alert-danger">
+            {{\Illuminate\Support\Facades\Session::get("ajout_admin_fail")}}
+        </div>
+    @endif
+    @if(\Illuminate\Support\Facades\Session::has("ajout_prof_fail"))
+        <div class="alert alert-danger">
+            {{\Illuminate\Support\Facades\Session::get("ajout_prof_fail")}}
+        </div>
+    @endif
+    @if(\Illuminate\Support\Facades\Session::has("image_overload"))
+        <div class="alert alert-danger">
+            {{\Illuminate\Support\Facades\Session::get("image_overload")}}
+        </div>
+    @endif
     <h1 class="text-center">Bienvenue dans le portail de projets des étudiants au CUI</h1>
 
 @endsection

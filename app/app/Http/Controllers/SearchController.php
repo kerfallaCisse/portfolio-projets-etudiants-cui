@@ -39,7 +39,7 @@ class SearchController extends Controller
             $cours = array_map(function ($code_cours, $nom_cours) {
                 return $code_cours ." ".$nom_cours;
             }, $code_cours, $nom_cours);
-            Session::flash("cours_not_exist", "Désolé le cours mentionné n'existe pas");
+            Session::flash("cours_not_exist", "Désolé, le cours mentionné n'existe pas. Veuillez réessayer.");
             return view("search.search", ["cours" => collect($cours)]);
         }
         return to_route('cours', $cours_id);
