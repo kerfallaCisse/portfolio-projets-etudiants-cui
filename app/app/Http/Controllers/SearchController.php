@@ -38,14 +38,15 @@ class SearchController extends Controller
 
     public function getAllFilesProject() {
         $disk = Storage::disk("public");
-        $directory = "Projects/49";
+        $directory = "projects/49";
         $files = $disk->allFiles($directory);
 
         $datas = array(
             "files" => $files
         );
-        return view("files")->with($datas);
+        return view("project.files")->with($datas);
     }
+
 
 
 

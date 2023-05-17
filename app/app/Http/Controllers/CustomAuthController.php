@@ -63,14 +63,14 @@ class CustomAuthController extends Controller
 
             if ($user->email_perso == NULL) {
                 # On vérifie la robustesse du mot de passe qu'il a entré pour son email de l'unige
-                if ($this->verifyPasswordStrength($mdp_unige) && $this->verifFisrtAndLastName($user->prenom, $user->nom)) {
+                if ($this->verifyPasswordStrength($mdp_unige)) {
                     $user->mdp_unige = password_hash($mdp_unige, PASSWORD_BCRYPT);
                 } else {
                     return view("auth.mdp_validation");
                 }
             } else {
                 # On vérife la robustesse des deux mots de passe
-                if ($this->verifyPasswordStrength($mdp_perso) && $this->verifyPasswordStrength($mdp_unige) && $this->verifFisrtAndLastName($user->prenom, $user->nom)) {
+                if ($this->verifyPasswordStrength($mdp_perso) && $this->verifyPasswordStrength($mdp_unige)) {
                     $user->mdp_unige = password_hash($mdp_unige, PASSWORD_BCRYPT);
                     $user->mdp_perso = password_hash($mdp_perso, PASSWORD_BCRYPT);
                 } else {

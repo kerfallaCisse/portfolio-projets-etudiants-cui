@@ -119,7 +119,130 @@
             margin-bottom: 0;
         }
 
+        tr td{
+            padding: 0 !important;
+            margin: 0 !important;
+        }
 
+        .unige {
+            color: #CF0063
+        }
+
+        .sciences {
+            color: #007E64
+        }
+
+        .lettres {
+            color: #0067C5
+        }
+
+        .medecine {
+            color: #96004B
+        }
+
+        .droit {
+            color: #F42941
+        }
+
+        .theologie {
+            color: #4B0B71
+        }
+
+        .psychologie {
+            color: #00B1AE
+        }
+
+        .traduction {
+            color: #FF5C00
+        }
+
+        .economie {
+            color: #465F7F
+        }
+
+        .societe {
+            color: #F1AB00
+        }
+
+        .guest {
+            color: #7A7A7A
+        }
+
+        * {box-sizing: border-box}
+        .mySlides1, .mySlides2 {display: none}
+        img {vertical-align: middle;}
+
+        /* Slideshow container */
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+        }
+
+        /* Next & previous buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a grey background color */
+        .prev:hover, .next:hover {
+            background-color: #f1f1f1;
+            color: black;
+        }
+
+
+        /* Parent Container */
+        .content_img{
+            position: relative;
+            width: 200px;
+            height: 200px;
+            float: left;
+            margin-right: 10px;
+        }
+
+        /* Child Text Container */
+        .content_img div{
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: black;
+            color: white;
+            margin-bottom: 5px;
+            font-family: sans-serif;
+            opacity: 0;
+            visibility: hidden;
+            -webkit-transition: visibility 0s, opacity 0.5s linear;
+            transition: visibility 0s, opacity 0.5s linear;
+        }
+
+        /* Hover on Parent Container */
+        .content_img:hover{
+            cursor: pointer;
+        }
+
+        .content_img:hover div{
+            width: 150px;
+            padding: 8px 15px;
+            visibility: visible;
+            opacity: 0.7;
+        }
 
     </style>
 </head>
@@ -156,6 +279,16 @@
                     <a class="nav-link" href="{{route('search.projects.cours')}}">RECHERCHER LES PROJETS</a>
                 </div>
 
+            </li>
+            <li class="nav-item active">
+                <div>
+                    <a class="nav-link" href="{{route('new.project')}}">DÉPOSER UN PROJET</a>
+                </div>
+            </li>
+            <li class="nav-item active">
+                <div>
+                    <a class="nav-link" href="{{route('portail')}}">VISUALISER LES PROJETS</a>
+                </div>
             </li>
         </ul>
 

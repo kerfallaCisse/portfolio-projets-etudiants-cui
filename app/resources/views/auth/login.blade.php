@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <a href="{{route('registration')}}">Créer un compte</a><br>
-                                    <a href="{{route('email_verif')}}">Mot de passe oublié ?</a>
+                                    <a href="">Mot de passe oublié ?</a>
                                 </div>
 
                                 <div class="d-grid mx-auto">

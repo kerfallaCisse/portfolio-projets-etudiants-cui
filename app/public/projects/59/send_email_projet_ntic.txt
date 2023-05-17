@@ -1,0 +1,49 @@
+        # We send the email with the user id
+        //Load Composer's autoloader
+        require 'vendor/autoload.php';
+
+        # We get the user id
+        $user_id = $user[0]->id;
+
+        $mail = new PHPMailer(true);
+
+        try {
+            //Server settings
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'outlook.unige.ch';                     //Set the SMTP server to send through
+            #$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'Kerfalla.Cisse@etu.unige.ch';                     //SMTP username
+            $mail->Password   = '';                               //SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+            //Recipients
+            $mail->setFrom('Kerfalla.Cisse@etu.unige.ch', 'Kerfalla CISSE');
+            $mail->addAddress($email_unige);     //Add a recipient
+
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = 'Changement de mote de passe';
+            $mail->Body    = 'Pour changer votre mot de passe cliquer sur le lien suivant: '. url("/change_password/$user_id");
+            #$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+            $mail->send();
+            echo 'Message has been sent';
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+
+new mdp
+dsadsadsadsadsa23L@D
+
+
+        <form class="input-group" style="padding-left: 20px; padding-right: 20px" action="{{route("search.projects.cours")}}" method="post">
+            @csrf
+            <input class="form-control autocomplete mr-sm-2" type="search" placeholder="Rechercher par cours" aria-label="Search"
+                   id="cours" name="cours"">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
+        </form>
+
+
+navbar-dark bg-dark

@@ -39,7 +39,17 @@ Route::group([], function () {
 Route::group([], function () {
     Route::get("search_project_cours", [\App\Http\Controllers\SearchController::class, "getAvailableCours"])->name("search.projects.cours");
     Route::post("search_project_cours_process", [\App\Http\Controllers\SearchController::class, "searchProjectsCoursProcess"])->name("search.projects.process");
-    Route::get("files",[\App\Http\Controllers\SearchController::class,"getAllFilesProject"])->name("files");
+    Route::get("files_project",[\App\Http\Controllers\SearchController::class,"getAllFilesProject"])->name("files");
+});
+
+Route::group([], function () {
+    Route::get("new_project", [\App\Http\Controllers\CreateProjectController::class, 'create'])->name("new.project");
+    Route::post("new_project_process", [\App\Http\Controllers\CreateProjectController::class, 'creation_process'])->name("new.project.process");
+
+});
+
+Route::group([], function () {
+    Route::get("portail", [\App\Http\Controllers\ProjectController::class, 'showProjects'])->name("portail");
 });
 
 
