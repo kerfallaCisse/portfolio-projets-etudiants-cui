@@ -139,7 +139,7 @@ class CreateProjectController extends Controller
                     array_push($outils_nom, $outil);
                     array_push($outils_img, "storage/images/tools/" . $outil . $mimeType);
                 } else {
-                    array_push($outils_inconnus, $outil);
+                    if($outil != "" or $outil != null) array_push($outils_inconnus, $outil);
                 }
             }
             $project->outils_nom = join(", ", array_merge($outils_nom, $outils_inconnus));
